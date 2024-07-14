@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Manage Matches</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body id="matches">
+
+    <h1 id="h1">Matches</h1>
+    <form id="mform" action="{{ url_for('add_match') }}" method="post">
+        <label class="ti" for="tournament_id">Tournament:</label>
+        <select class="tis" id="tournament_id" name="tournament_id">
+            {% for tournament in tournaments %}
+            <option value="{{ tournament.id }}">{{ tournament.name }}</option>
+            {% endfor %}
+        </select><br>
+        <label class="label" for="name" required>Match Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label class="label1" for="date" required>Match Date:</label>
+        <input type="text" id="date" name="date" required><br><br>
+        <input class="button" type="submit" value="Add Match">
+    </form>
+
+    <div class="scrollbar" id="style-4">
+        <div class="force-overflow">
+            <div id="bder">
+                <ul id="formaction">
+                    {% for match in matches %}
+                    <div id="matchdetails">
+                        {{ match.name }}<p style="color: lightsalmon;">({{ match.date }})</p>
+                        <a id="edit" href="{{ url_for('edit_match', id=match.id) }}">Edit</a>
+                        <form action="{{ url_for('delete_match', match_id=match.id) }}" method="post"><input
+                                type="submit" class="deletebutton" value="Delete">
+                        </form>
+                    </div>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="backhome">
+        <a href="{{ url_for('index') }}" style="color: white; text-decoration-line: none; ">Home</a>
+    </div>
+</body>
+<footer><a href="https://ps8network.com/">
+        <p class="mft">Developed by PS8 Network</p>
+    </a></footer>
+
+</html>

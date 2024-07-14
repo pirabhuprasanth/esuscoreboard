@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Match</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="teams" >
+    <h1 class="h1 " >Edit Match</h1>
+    <form action="{{ url_for('edit_match', id=match.id) }}" method="post">
+       <div id="mn" > 
+        <label for="name">Match Name:</label>
+        <input type="text" class="ibn" name="name" value="{{ match.name }}">
+        <label class="md" for="date">Match Date:</label>
+        <input type="text" class="ibd" name="date" value="{{ match.date }}">
+        <input id="upm" type="submit" value="Update Match">
+    </div>
+    </form>
+    <a href="{{ url_for('matches') }}" class="btm"  >Back to Matches</a>
+</body>
+<footer><a href="https://ps8network.com/"><p class="ftem" >Developed by PS8 Network</p></a></footer>
+</html>

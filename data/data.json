@@ -1,0 +1,35 @@
+{
+    "tournaments": [
+        {
+            "id": 1,
+            "name": "hari",
+            "date": "17112000",
+            "description": "suma podu"
+        },
+        {
+            "id": 2,
+            "name": "hari",
+            "date": "17112000",
+            "description": "suma podu"
+        }
+    ],
+    "matches": [
+        {
+            "id": 1,
+            "tournament_id": 1,
+            "name": "mass",
+            "date": "17112000"
+        }
+    ],
+    "teams": [
+        {
+            "id": 1,
+            "name": "Hari",
+            "match_id": 1,
+            "logo": "wrvf",
+            "score": 2,
+            "kills": 4
+        }
+    ],
+    "players": []
+}

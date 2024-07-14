@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SkyEsports Scoreboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d7bdf509b5.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="home">
+    <img src="/static/download.png" alt="" id="logo">
+    <h1>Scoreboard</h1><br>
+    <div id="acon">
+        <a href="{{ url_for('tournaments') }}">Manage Tournaments</a><br>
+        <a href="{{ url_for('matches') }}">Manage Matches</a><br>
+        <a href="{{ url_for('teams') }}">Manage Teams</a><br><br>
+        <div class="hr-theme-slash-2">
+            <div class="hr-line"></div>
+            <div class="hr-icon"><i class="fa-solid fa-gamepad" style="color: #ffffff;"></i></div>
+            <div class="hr-line"></div>
+        </div><br>
+        <a href="{{ url_for('players') }}">Manage Players</a><br>
+        <a href="{{ url_for('match_stats') }}">Match Stats</a><br>
+        <a href="{{ url_for('overall_stats') }}">Overall Stats</a><br>
+    </div>
+</body><br>
+
+<footer><a href="https://ps8network.com/">
+        <p>Developed by PS8 Network</p>
+    </a></footer>
+
+</html>

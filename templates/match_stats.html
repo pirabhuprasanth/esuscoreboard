@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Match Stats</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body id="ms">
+    <h1 id="h1ms">Match Stats</h1>
+    <div class="contbox" >
+        <form class="fams" action="{{ url_for('match_stats') }}" method="post">
+            <label class="lstn" for="tournament_id">Select Tournament:</label>
+            <select class="lstns" id="tournament_id" name="tournament_id" onchange="filterMatches()" required >
+                <option value="">--Select Tournament--</option>
+                {% for tournament in tournaments %}
+                <option value="{{ tournament.id }}">{{ tournament.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="match_id">Select Match:</label>
+            <select id="match_id" name="match_id" required >
+                <option >--Select Match--</option>
+                {% for match in matches %}
+                <option value="{{ match.id }}" data-tournament-id="{{ match.tournament_id }}">{{ match.description }}
+                </option>
+                {% endfor %}
+            </select>
+            <br>
+            <input id="vesbt" type="submit" value="View / Edit Stats">
+        </form>
+    </div>
+    <a href="{{ url_for('index') }}" id="btbth" >Back to Home</a>
+
+    <script>
+        function filterMatches() {
+            var tournamentId = document.getElementById("tournament_id").value;
+            var matchSelect = document.getElementById("match_id");
+            var matches = matchSelect.options;
+            for (var i = 0; i < matches.length; i++) {
+                var match = matches[i];
+                if (match.getAttribute("data-tournament-id") == tournamentId || match.value == "") {
+                    match.style.display = "block";
+                } else {
+                    match.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
