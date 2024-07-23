@@ -1,9 +1,80 @@
 {
     "tournaments": [
+        {
+            "id": 5,
+            "name": "Rakesh sharan",
+            "date": "20-10-2024",
+            "description": "suma padu"
+        },
+        {
+            "id": 6,
+            "name": "Rakesh Sharan",
+            "date": "20-10-2024",
+            "description": "suma padu"
+        },
+        {
+            "id": 7,
+            "name": "Rakesh sharan",
+            "date": "20-10-2024",
+            "description": "suma padu"
+        },
+        {
+            "id": 4,
+            "name": "rakrdh",
+            "date": "20-10-2024",
+            "description": "suma padu"
+        },
+        {
+            "id": 5,
+            "name": "rakrdh",
+            "date": "20-10-2024",
+            "description": "suma padu"
+        }
     ],
     "matches": [
+        {
+            "id": 1,
+            "tournament_id": 5,
+            "name": "Rakesh Sharan",
+            "date": "20-10-2024"
+        },
+        {
+            "id": 2,
+            "tournament_id": 5,
+            "name": "rakrdh",
+            "date": "20-10-2024"
+        }
     ],
     "teams": [
+        {
+            "id": 1,
+            "name": "Rakesh Sharan",
+            "match_id": 1,
+            "logo": "aaaaaaa",
+            "score": 0,
+            "kills": 0
+        },
+        {
+            "id": 2,
+            "name": "Rakesh Sharan",
+            "match_id": 1,
+            "logo": "aaaaaaa",
+            "score": 0,
+            "kills": 0
+        }
     ],
-    "players": []
+    "players": [
+        {
+            "id": 1,
+            "name": "rakrdh",
+            "image": "/static/background6.jpg",
+            "team_id": 1,
+            "stats": {
+                "kills": 0,
+                "assists": 0,
+                "deaths": 0,
+                "alive": false
+            }
+        }
+    ]
 }

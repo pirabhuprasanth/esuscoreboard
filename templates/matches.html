@@ -5,51 +5,61 @@
     <title>Manage Matches</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d7bdf509b5.js" crossorigin="anonymous"></script>
 </head>
 
-<body id="matches">
+<body class="tournaments background_content ">
 
-    <h1 id="h1">Matches</h1>
-    <form id="mform" action="{{ url_for('add_match') }}" method="post">
-        <label class="ti" for="tournament_id">Tournament:</label>
-        <select class="tis" id="tournament_id" name="tournament_id">
-            {% for tournament in tournaments %}
-            <option value="{{ tournament.id }}">{{ tournament.name }}</option>
-            {% endfor %}
-        </select><br>
-        <label class="label" for="name" required>Match Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label class="label1" for="date" required>Match Date:</label>
-        <input type="text" id="date" name="date" required><br><br>
-        <input class="button" type="submit" value="Add Match">
+    <h1 class='title_tour position_center'>Matches</h1>
+    <form id="mform" action="{{ url_for('add_match') }}" method="post" class="position_center">
+        <div class="all glassmorphisum">
+            <label for="tournament_id">Tournament:</label>
+            <select id="tournament_id" name="tournament_id">
+                {% for tournament in tournaments %}
+                <option value="{{ tournament.id }}">{{ tournament.name }}</option>
+                {% endfor %}
+            </select><br>
+            <label class="label" for="name" required>Match Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label class="label1" for="date" required>Match Date:</label>
+            <input type="text" id="date" name="date" required><br><br>
+            <input class="button" type="submit" value="Add Match">
+        </div>
+
     </form>
-
-    <div class="scrollbar" id="style-4">
-        <div class="force-overflow">
-            <div id="bder">
-                <ul id="formaction">
-                    {% for match in matches %}
-                    <div id="matchdetails">
-                        {{ match.name }}<p style="color: lightsalmon;">({{ match.date }})</p>
-                        <a id="edit" href="{{ url_for('edit_match', id=match.id) }}">Edit</a>
-                        <form action="{{ url_for('delete_match', match_id=match.id) }}" method="post"><input
-                                type="submit" class="deletebutton" value="Delete">
-                        </form>
-                    </div>
-
-                    {% endfor %}
-                </ul>
+    <div id="ult " class="position_center">
+        <div class="boxor  glassmorphisum custom-scrollbar">
+            <div class="table2 position_center addition">
+                <div>Match Name</div>
+                <div>Date</div>
+                <div>Action</div>
             </div>
+            {% for match in matches %}
+            <div class="table2 position_center">
+                <div>
+                    {{ match.name }}
+                </div>
+                <div>
+                    ({{ match.date }})
+                </div>
+                <div>
+                    <form action="{{ url_for('delete_match', match_id=match.id) }}" method="post">
+                        <input type="submit" class="valuebtn" value="Delete">
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-
-
-    <div class="backhome">
-        <a href="{{ url_for('index') }}" style="color: white; text-decoration-line: none; ">Home</a>
+    <!-- <div class="backtohome  position_center">
+        <a href="{{ url_for('index') }}" class="custom_button position_center">Back to Home</a>
+    </div> -->
+    <div class="backbutton">
+        <a href="{{ url_for('index') }}" class="position_center"><i class="fa-solid fa-circle-chevron-left"></i></a>  
     </div>
 </body>
-<footer><a href="https://ps8network.com/">
-        <p class="mft">Developed by PS8 Network</p>
-    </a></footer>
+<footer class="position_center"><a href="https://ps8network.com/">
+    <p>Developed by PS8 Network</p>
+</a></footer>
 
 </html>

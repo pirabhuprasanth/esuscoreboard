@@ -5,27 +5,28 @@
     <title>Manage Teams</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d7bdf509b5.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="teams">
-    <h1 class="h1">Teams</h1>
-    <form action="{{ url_for('add_team') }}" method="post">
-        <div id="teamnm">
-            <label id="ltn" for="name">Team Name:</label>
-            <input id="itns" type="text" id="name1" name="name"><br>
-            <label id="lgu" for="logo">Logo URL:</label>
-            <input id="ilus" type="text" id="logo" name="logo"><br>
-            <label id="lmi" for="match_id">Match:</label>
-            <select class="smis" id="match_id" name="match_id">
+<body class="tournaments background_content ">
+    <h1 class='title_tour position_center'>Teams</h1>
+    <form action="{{ url_for('add_team') }}" method="post" class="position_center">
+        <div class="all glassmorphisum">
+            <label id="ltn" for="name" required>Team Name:</label>
+            <input id="itns" type="text" id="name1" name="name" required>
+            <label id="lgu" for="logo" required>Logo URL:</label>
+            <input id="ilus" type="text" id="logo" name="logo" required>
+            <label id="lmi" for="match_id" required>Match:</label>
+            <select class="smis" id="match_id" name="match_id" required>
                 {% for match in matches %}
                 <option class="smis" value="{{ match.id }}">{{ match.name }}</option>
                 {% endfor %}
-            </select><br>
-            <label id="ls" for="status">Status:</label>
-            <select class="sss" id="status" name="status">
+            </select>
+            <label id="ls" for="status" required>Status:</label>
+            <select class="sss" id="status" name="status" required>
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
-            </select><br>
+            </select>
             <!-- <select id="match_id" name="match_id">
                 {% for match in matches %}
                 <option value="{{ match.id }}">{{ match.name }}</option>
@@ -34,25 +35,39 @@
             <input class="add" type="submit" value="Add Team">
         </div>
     </form>
-    <div class="li">
-        <ul>
+    <div id="ult " class="position_center">
+        <div class="boxor glassmorphisum custom-scrollbar">
+            <div class="table3 position_center addition">
+                <div>Team Name</div>
+                
+                <div>Match</div>
+                <div>Status</div>
+                <div>Action</div>
+            </div>
             {% for team in teams %}
-            <div id="matchdetails1">
-                {{ team.name }} (Match: {{ team.match_id }}) ({{ team.status }})<br>
-                <a href="{{ url_for('edit_team', id=team.id) }}" id="edit">Edit</a>
-                <form action="{{ url_for('delete_team', team_id=team.id) }}" method="post"><input type="submit"
-                       class="deleteteams" value="Delete">
-                </form>
+            <div class="table3 position_center">
+                <div>
+                    {{ team.name }}
+                </div>
+                <div>
+                    {{ team.match_id }}
+                </div>
+                <div>
+                    {{ team.status }}
+                </div>
+                <div>
+                    <a href="{{ url_for('edit_team', id=team.id) }}"class='editbtn position_center' id="edit">Edit</a>
+                    <form action="{{ url_for('delete_team', team_id=team.id) }}" method="post"><input type="submit"
+                           class="valuebtn" value="Delete">
+                    </form>
+                </div>
             </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
-    <div class="backhometeams">
-        <a href="{{ url_for('index') }}" style="color: white; text-decoration-line: none; ">Home</a>
+    <div class="backbutton">
+        <a href="{{ url_for('index') }}" class="position_center"><i class="fa-solid fa-circle-chevron-left"></i></a>  
     </div>
 </body>
-<footer><a href="https://ps8network.com/">
-        <p class="nt">Developed by PS8 Network</p>
-    </a></footer>
 
 </html> 

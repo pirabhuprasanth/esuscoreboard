@@ -5,14 +5,15 @@
     <title>Match Stats</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/8d9491e66a.js" crossorigin="anonymous"></script>
 </head>
 
-<body id="ms">
-    <h1 id="h1ms">Match Stats</h1>
-    <div class="contbox" >
-        <form class="fams" action="{{ url_for('match_stats') }}" method="post">
-            <label class="lstn" for="tournament_id">Select Tournament:</label>
-            <select class="lstns" id="tournament_id" name="tournament_id" onchange="filterMatches()" required >
+<body class="tournaments background_content ">
+    <h1 class="title_tour position_center">Match Stats</h1>
+    <form action="{{ url_for('match_stats') }}" method="post" class="position_center">
+        <div class="all glassmorphisum">
+            <label  for="tournament_id">Select Tournament:</label>
+            <select id="tournament_id" name="tournament_id" onchange="filterMatches()" required >
                 <option value="">--Select Tournament--</option>
                 {% for tournament in tournaments %}
                 <option value="{{ tournament.id }}">{{ tournament.name }}</option>
@@ -29,11 +30,14 @@
             </select>
             <br>
             <input id="vesbt" type="submit" value="View / Edit Stats">
-        </form>
-    </div>
-    <a href="{{ url_for('index') }}" id="btbth" >Back to Home</a>
+        </div>
+    </form>
 
-    <script>
+    <div class="backbutton">
+        <a href="{{ url_for('index') }}" class="position_center"><i class="fa-solid fa-circle-chevron-left"></i></a>  
+    </div>
+
+    <!-- <script>
         function filterMatches() {
             var tournamentId = document.getElementById("tournament_id").value;
             var matchSelect = document.getElementById("match_id");
@@ -47,7 +51,10 @@
                 }
             }
         }
-    </script>
+    </script> -->
 </body>
+<footer class="position_center"><a href="https://ps8network.com/">
+    <p>Developed by PS8 Network</p>
+</a></footer>
 
 </html>

@@ -4,89 +4,75 @@
     <title>Manage Players</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/8d9491e66a.js" crossorigin="anonymous"></script>
 </head>
-<body class="player" >
-    <h1 class="ph1" >Players</h1>
-    <div id="boxfrcnt" >
-    <form action="{{ url_for('players') }}" method="post">
-        <label class="lst" for="tournament_id">Select Tournament :</label>
-        <select class="lsts" id="tournament_id" name="tournament_id" onchange="filterMatchesAndTeams()">
-            <option class="lsts" value="">--Select Tournament--</option>
-            {% for tournament in tournaments %}
-                <option value="{{ tournament.id }}">{{ tournament.name }}</option>
-            {% endfor %}
-        </select>
-        <br>    
-        <label class="lsm" for="match_id">Select Match :</label>
-        <select class="lsms" id="match_id" name="match_id" onchange="filterTeams()" required>
-            <option class="lsms" value="">--Select Match--</option>
-            {% for match in matches %}
-                <option value="{{ match.id }}" data-tournament-id="{{ match.tournament_id }}">{{ match.description }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label class="lste" for="team_id">Select Team :</label>
-        <select class="lstes" id="team_id" name="team_id">
-            <option value="">--Select Team--</option>
-            {% for team in teams %}
-                <option value="{{ team.id }}" data-match-id="{{ team.match_id }}">{{ team.name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label class="lpn" for="name">Player Name :</label>
-        <input  class="lpns" type="text" id="playername" name="name"><br>
-        <label class="liu" for="image">Image URL :</label>
-        <input class="lius" type="text" id="image" name="image">
-        <br>
-        <input id="adpln" type="submit" value="Add Player">
+<body class="tournaments background_content add_scroll" id="player">
+    <h1 class="title_tour position_center" >Players</h1>
+    <form action="{{ url_for('players') }}" method="post" class="position_center">
+        <div class="all glassmorphisum">
+            <label  for="tournament_id">Select Tournament :</label>
+            <select  id="tournament_id" name="tournament_id" onchange="filterMatchesAndTeams()">
+                <option  value="">--Select Tournament--</option>
+                {% for tournament in tournaments %}
+                    <option value="{{ tournament.id }}">{{ tournament.name }}</option>
+                {% endfor %}
+            </select>
+            <br>    
+            <label  for="match_id">Select Match :</label>
+            <select id="match_id" name="match_id" onchange="filterTeams()" required>
+                <option class="lsms" value="">--Select Match--</option>
+                {% for match in matches %}
+                    <option value="{{ match.id }}" data-tournament-id="{{ match.tournament_id }}">{{ match.description }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label  for="team_id">Select Team :</label>
+            <select  id="team_id" name="team_id">
+                <option value="">--Select Team--</option>
+                {% for team in teams %}
+                    <option value="{{ team.id }}" data-match-id="{{ team.match_id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label  for="name">Player Name :</label>
+            <input   type="text" id="playername" name="name"><br>
+            <label  for="image">Image URL :</label>
+            <input  type="text" id="image" name="image">
+            <br>
+            <input id="adpln" type="submit" value="Add Player">
+        </div>
     </form>
-</div>
-    <ul>
-        {% for player in players %}
-            <li>
-                <img src="{{ player.image }}" alt="{{ player.name }}" style="width: 50px;">
-                {{ player.name }} (Team: {{ player.team_id }})
-                <form action="{{ url_for('delete_player', player_id=player.id) }}" method="post" style="display:inline;">
-                    <input type="submit" value="Delete">
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('index') }}" class="btoh" >Back to Home</a>
+    <div id="ult " class="position_center">
+        <div class="boxor_2 glassmorphisum">
+            <div class="table4 position_center addition">
+                <div>Team Logo</div>
+                <div>Team Name</div>
+                <div>Team Id</div>
+                <div>Action</div>
+            </div>
+            {% for player in players %}
+            <div class="table4 position_center">
+                <div>
+                    <img src="{{ player.image }}" alt="{{ player.name }}" style="width: 50px;">
+                </div>
+                <div>
+                    {{ player.name }}
+                </div>
+                <div>
+                    {{ player.team_id }}
+                </div>
+                <div>
+                    <form action="{{ url_for('delete_player', player_id=player.id) }}" method="post" style="display:inline;">
+                        <input type="submit" class="valuebtn" value="Delete">
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-    <script>
-        function filterMatchesAndTeams() {
-            var tournamentId = document.getElementById("tournament_id").value;
-            var matchSelect = document.getElementById("match_id");
-            var teamSelect = document.getElementById("team_id");
-
-            var matches = matchSelect.options;
-            for (var i = 0; i < matches.length; i++) {
-                var match = matches[i];
-                if (match.getAttribute("data-tournament-id") == tournamentId || match.value == "") {
-                    match.style.display = "block";
-                } else {
-                    match.style.display = "none";
-                }
-            }
-
-            filterTeams();
-        }
-
-        function filterTeams() {
-            var matchId = document.getElementById("match_id").value;
-            var teamSelect = document.getElementById("team_id");
-
-            var teams = teamSelect.options;
-            for (var i = 0; i < teams.length; i++) {
-                var team = teams[i];
-                if (team.getAttribute("data-match-id") == matchId || team.value == "") {
-                    team.style.display = "block";
-                } else {
-                    team.style.display = "none";
-                }
-            }
-        }
-    </script>
+    <div class="backbutton">
+        <a href="{{ url_for('index') }}" class="position_center"><i class="fa-solid fa-circle-chevron-left"></i></a>  
+    </div>
 </body>
 </html>

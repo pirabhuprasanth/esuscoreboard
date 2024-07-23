@@ -135,7 +135,7 @@ def players():
         team_id = int(request.form.get('team_id', 0))
         
         if not tournament_id or not match_id or not team_id:
-            flash('Please select a valid tournament, match, and team.')
+            Flask('Please select a valid tournament, match, and team.')
             return redirect(url_for('players'))
         
         player_id = max([player['id'] for player in data['players']], default=0) + 1
